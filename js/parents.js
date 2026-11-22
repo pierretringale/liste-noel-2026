@@ -65,6 +65,7 @@ function montrerParents() {
   $('vue-connexion').hidden = true;
   $('vue-parents').hidden = false;
   chargerFiche(null);
+  $('zone-fiche').hidden = true;
   relireListe();
 }
 
@@ -176,6 +177,21 @@ function chargerFiche(cadeauId) {
   dessinerListe();
 }
 
+function ouvrirFiche(cadeauId) {
+  chargerFiche(cadeauId);
+  $('msg-liste').textContent = '';
+  $('zone-fiche').hidden = false;
+}
+
+function fermerFiche(message) {
+  const dernierCadeauId = etat.enCours;
+  chargerFiche(null);
+  $('zone-fiche').hidden = true;
+  $('msg-liste').textContent = message ?? '';
+  const boutonModifier = dernierCadeauId ? document.querySelector('.btn-edit[data-id="' + dernierCadeauId + '"]') : null;
+  (boutonModifier ?? $('btn-ajouter')).focus();
+}
+
 function dessinerBarreReserve() {
   const c = cadeauEnCours();
   $('barre-reserve').hidden = !(c && c.claimed_by);
@@ -275,8 +291,7 @@ async function enregistrer(e) {
       if (!reponsePhoto.data.ok) return afficherErreurFiche(reponsePhoto.data.error);
     }
     await relireListe();
-    chargerFiche(null);
-    $('msg-enregistre').textContent = MSG_ENREGISTRE;
+    fermerFiche(MSG_ENREGISTRE);
   } catch (err) {
     if (err.message === 'session_expiree') return;
     $('etat-photo').textContent = '';
@@ -314,7 +329,7 @@ async function supprimerCadeau() {
   try {
     await appelParents({ action: 'gift_delete', gift_id: etat.enCours });
     await relireListe();
-    chargerFiche(null);
+    fermerFiche();
   } catch (err) {
     if (err.message !== 'session_expiree') $('erreur-fiche').textContent = MSG_PANNE;
   } finally {
@@ -331,7 +346,7 @@ function demanderSuppression(oui) {
 function surModifier(e) {
   const bouton = e.target.closest('.btn-edit');
   if (!bouton) return;
-  chargerFiche(bouton.dataset.id);
+  ouvrirFiche(bouton.dataset.id);
   $('fiche-titre').focus();
 }
 
@@ -339,11 +354,11 @@ function surModifier(e) {
 function demarrerPage() {
   $('form-connexion').addEventListener('submit', seConnecter);
   $('btn-deconnexion').addEventListener('click', seDeconnecter);
-  $('btn-ajouter').addEventListener('click', () => { chargerFiche(null); $('f-name').focus(); });
+  $('btn-ajouter').addEventListener('click', () => { ouvrirFiche(null); $('f-name').focus(); });
   $('liste-Loula').addEventListener('click', surModifier);
   $('liste-Sacha').addEventListener('click', surModifier);
   $('fiche').addEventListener('submit', enregistrer);
-  $('btn-annuler').addEventListener('click', () => chargerFiche(null));
+  $('btn-annuler').addEventListener('click', () => fermerFiche());
   $('btn-liberer').addEventListener('click', libererCadeau);
   $('btn-supprimer').addEventListener('click', () => demanderSuppression(true));
   $('btn-suppr-non').addEventListener('click', () => demanderSuppression(false));

@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <title>Espace parents — Le Noël de Sacha et Loula</title>
 <link rel="stylesheet" href="css/style.css">
-<script type="module" src="js/parents.js?v=2"></script>
+<script type="module" src="js/parents.js?v=3"></script>
 </head>
 <body>
 
@@ -57,6 +57,7 @@
         </div>
         <button type="button" class="btn-add" id="btn-ajouter"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Ajouter un cadeau</button>
       </div>
+      <p class="saved-msg" id="msg-liste" role="status"></p>
       <p class="alert" id="alerte-parents" role="alert" hidden>La liste ne répond pas pour le moment. Réessayez dans un instant.</p>
       <div class="p-group">
         <h2 class="p-group-title">Pour Loula</h2>
@@ -68,7 +69,7 @@
       </div>
     </section>
 
-    <aside class="p-aside" aria-label="Fiche du cadeau">
+    <aside class="p-aside" id="zone-fiche" aria-label="Fiche du cadeau" hidden>
       <div class="dots" aria-hidden="true"></div>
       <form class="p-form" id="fiche">
         <h2 class="p-form-title" id="fiche-titre" tabindex="-1">Ajouter un cadeau</h2>
