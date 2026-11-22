@@ -4,10 +4,10 @@
 
 | Élément | État |
 |---|---|
-| Phase | En ligne (22/11/2026), durée de vie jusqu'à fin décembre 2026 |
-| Prochaine étape | Démontage en janvier 2027, sur demande de Pierre (README § Démontage) |
+| Phase | En ligne et validée par Pierre sur téléphone en 4G (22/11/2026), 10 cadeaux avec photo ; durée de vie jusqu'à fin décembre 2026 |
+| Prochaine étape | Envoyer le lien à la famille ; démontage en janvier 2027, sur demande de Pierre (README § Démontage) |
 | Bloquant | Aucun |
-| À NE PAS FAIRE | Toucher un objet de la base hors `noel_*` ; mettre une clé Supabase dans le dépôt ; retoucher le ciel du bandeau ou régénérer `hero-scene.webp` ; publier `kit/BRIEF.md` (il décrit la dette RLS de la base mutualisée) |
+| À NE PAS FAIRE | Toucher un objet de la base hors `noel_*` ; mettre une clé Supabase dans le dépôt ; retoucher le ciel du bandeau ou régénérer `hero-scene.webp` ; publier `kit/BRIEF.md` (il décrit la dette RLS de la base mutualisée) ; modifier un fichier JS sans incrémenter son `?v=N` dans la page HTML qui le charge |
 | URL / accès | https://pierretringale.github.io/liste-noel-2026/ — parents : `/parents.html` |
 | Repo GitHub | `pierretringale/liste-noel-2026` (public, imposé par GitHub Free pour Pages) |
 
@@ -32,6 +32,7 @@ Une page publique, sans compte, envoyée par lien à la famille : chacun coche l
 - Poser un secret Supabase crée une nouvelle version de **toutes** les fonctions du projet (`analyze-receipt` compris), sans changer leur code.
 - La CLI Supabase 3.x refuse toute modification en mode agent sans `--yes`.
 - GitHub Free : Pages uniquement sur dépôt public.
+- GitHub Pages sert les fichiers avec `cache-control: max-age=600` : un navigateur peut garder un ancien JS 10 minutes. `parents.html` charge `js/parents.js?v=3` ; `index.html` charge `js/liste.js` sans version (à ajouter à la prochaine modification).
 
 ## STRUCTURE DU PROJET
 
@@ -60,6 +61,8 @@ Voir README.md.
 | Photo remplacée ou cadeau supprimé | L'ancien fichier du bucket est supprimé |
 | Fichier photo très grand | Réduit à 600 px, JPEG 0,82 (puis 0,7 / 0,6 / 0,5 si > 400 Ko) |
 | Nom d'action piège (`toString`…) | `400 unknown_action` |
+| Photo produit sur fond blanc | Rectangle clair visible dans l'arche (fond papier) ; accepté |
+| Fiche parents ouverte, liste rafraîchie (30 s) | La fiche garde la saisie en cours ; seule la liste se redessine |
 
 ## JOURNAL DES DÉCISIONS TECHNIQUES
 
@@ -76,11 +79,15 @@ Voir README.md.
 | 22/11/2026 | La fiche parents est masquée par défaut, ouverte par « Modifier » / « Ajouter un cadeau », refermée par Annuler / Enregistrer / Supprimer ; message « C'est enregistré » affiché au-dessus de la liste | Demande de Pierre : la fiche doit disparaître, pas seulement se vider | Écart assumé à la maquette Parents.dc.html (fiche toujours visible) |
 | 22/11/2026 | 10 photos fournies par Pierre réduites (600 px, JPEG 0,82) et déposées dans `noel-photos` via `supabase storage cp --experimental --remote=…`, puis reliées en SQL | Les images collées dans la conversation ne sont pas des fichiers ; passage par un dossier | Les parents peuvent toujours remplacer une photo depuis la fiche |
 | 22/11/2026 | Cadeau de Sacha renommé « Pokémon Bulbizarre + Poké Ball Clip » | Confirmé par Pierre (la photo et le produit sont Bulbizarre) | — |
+| 22/11/2026 | Zone tactile des liens « Voir chez … » laissée telle quelle (23 px de haut sur certaines cartes, sous les 44 px du brief) | Décision de Pierre : les liens fonctionnent sur téléphone | Si des proches ont du mal à toucher le lien : `padding` vertical sur `.card-link` |
 | 22/11/2026 | « Enregistrer » referme aussi la fiche après succès (message « C'est enregistré » conservé) ; en cas d'erreur la fiche reste ouverte | Demande de Pierre, même logique qu'Annuler | — |
 
 ## ERREURS CONNUES
 
 | Date | Symptôme | Cause racine | Fix appliqué | Récurrent |
 |---|---|---|---|---|
-| 22/11/2026 | Espace parents : impossible de refermer un cadeau après l'avoir modifié | « Annuler » rechargeait le cadeau en cours au lieu de vider la fiche | `btn-annuler` → `chargerFiche(null)` | Non |
+| 22/11/2026 | Espace parents : impossible de refermer un cadeau après l'avoir modifié | « Annuler » rechargeait le cadeau en cours au lieu de vider la fiche ; la fiche restait toujours affichée (maquette) | `fermerFiche()` / `ouvrirFiche()` dans `js/parents.js` : fiche masquée hors édition | Non |
+| 22/11/2026 | Correctif poussé mais « rien ne change » chez Pierre | GitHub Pages `max-age=600` : le navigateur garde l'ancien `parents.js` | Version dans l'URL du script (`js/parents.js?v=N`), à incrémenter à chaque modification | Oui, à chaque modification d'un JS ou CSS en ligne |
+| 22/11/2026 | `supabase storage cp` : `ProjectRefNotLinkedError` | Dossier non lié (`supabase link` jamais fait), `--linked` inutilisable | Utiliser `--remote=eqlofgcravaihvfaysdb` (+ `--experimental --yes`) | Oui, pour toute commande CLI |
+| 22/11/2026 | Photo de Buzz agrandie de 572 à 600 px | `sips -Z 600` agrandit aussi les images plus petites | Ne passer `-Z` que si le plus grand côté dépasse 600 px | Non |
 | 22/11/2026 | `supabase secrets set` ne pose rien, sans message visible | CLI 3.x : en mode agent, toute modification exige `--yes` | Ajouter `--yes` (et `--remote=<ref>`) | Oui, à chaque commande CLI qui modifie le projet |
