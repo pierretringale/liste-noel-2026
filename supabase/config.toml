@@ -1,0 +1,5 @@
+project_id = "eqlofgcravaihvfaysdb"
+
+# La famille n'a ni compte ni clé : la fonction fait son propre contrôle (jeton parents).
+[functions.noel]
+verify_jwt = false

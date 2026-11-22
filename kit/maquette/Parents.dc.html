@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Espace parents — ajouter et modifier les cadeaux</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Great+Vibes&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#b8371f}a:hover{color:#141d52}
+</style>
+</helmet>
+<div style="background: #f6efe0; color: #141d52; font-family: 'Atkinson Hyperlegible', Verdana, sans-serif; font-size: 17px; line-height: 1.5; min-height: 1460px">
+
+  <header style="background: #141d52; color: #f6efe0; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px">
+    <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px">
+      <span style="font-family: 'Great Vibes', 'Brush Script MT', cursive; font-size: 36px; line-height: 1.1; color: #ffd23f">Espace parents</span>
+      <span style="font-family: 'IM Fell English', Georgia, serif; font-size: 20px">Le Noël de Sacha &amp; Loula</span>
+    </div>
+    <nav aria-label="Navigation de l'espace parents" style="display: flex; flex-wrap: wrap; gap: 10px">
+      <a href="Main.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 2px solid #f6efe0; border-radius: 999px; color: #f6efe0; font-weight: 700; font-size: 15px; text-decoration: none">Voir la liste</a>
+      <a href="Main.dc.html" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 2px solid #ffd23f; border-radius: 999px; background: #ffd23f; color: #141d52; font-weight: 700; font-size: 15px; text-decoration: none">Se déconnecter</a>
+    </nav>
+  </header>
+  <div aria-hidden="true" style="height: 12px; background-color: #ee5a40; background-image: repeating-linear-gradient(90deg, #141d52 0 10px, transparent 10px 32px), repeating-linear-gradient(90deg, transparent 0 20px, #ffd23f 20px 22px, transparent 22px 32px), linear-gradient(180deg, transparent 0 4px, #8a3440 4px 8px, transparent 8px)"></div>
+
+  <div style="max-width: 1200px; margin: 0 auto; padding: 40px 24px 72px; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 40px">
+
+    <section aria-label="Les cadeaux de la liste" style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 26px">
+      <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px 24px">
+        <div style="display: flex; flex-direction: column; gap: 2px">
+          <h1 style="margin: 0; font-family: 'IM Fell English', Georgia, serif; font-weight: 400; font-size: clamp(30px, 4vw, 40px); line-height: 1.1">Les cadeaux de la liste</h1>
+          <p style="margin: 0; color: #3b4375">{{summary}}</p>
+        </div>
+        <button type="button" onClick="{{addNew}}" style="font: inherit; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; min-height: 50px; padding: 0 20px; border: 0; border-radius: 8px; background: #141d52; color: #f6efe0; cursor: pointer; box-shadow: 5px 5px 0 #ee5a40"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" style="width: 18px; height: 18px"><path d="M12 5v14M5 12h14"></path></svg>Ajouter un cadeau</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-family: 'IM Fell English', Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.1; border-bottom: 2px solid #141d52; padding-bottom: 6px">Pour Loula</h2>
+        <sc-for list="{{loula}}" as="item" hint-placeholder-count="5">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 12px 14px; border: 2px solid #141d52; border-radius: 12px; background: {{item.bg}}">
+            <div aria-hidden="true" style="flex: none; width: 46px; height: 52px; border-radius: 23px 23px 6px 6px; background-color: #141d52; background-image: radial-gradient(2px 2px at 30% 34%, #f6efe0 50%, transparent 52%), radial-gradient(2px 2px at 68% 58%, #ffd23f 50%, transparent 52%)"></div>
+            <div style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+              <span style="font-family: 'IM Fell English', Georgia, serif; font-size: 21px; line-height: 1.2; overflow-wrap: anywhere">{{item.name}}</span>
+              <span style="font-size: 14px; color: #3b4375; overflow-wrap: anywhere">{{item.sub}}</span>
+            </div>
+            <sc-if value="{{item.taken}}" hint-placeholder-val="{{false}}">
+              <span style="font-size: 14px; font-weight: 700; padding: 4px 12px; border-radius: 999px; background: #ee5a40; color: #141d52">Réservé par {{item.who}}</span>
+            </sc-if>
+            <sc-if value="{{item.free}}" hint-placeholder-val="{{true}}">
+              <span style="font-size: 14px; font-weight: 700; padding: 2px 12px; border: 2px solid #141d52; border-radius: 999px; background: #fffaf0">Libre</span>
+            </sc-if>
+            <button type="button" onClick="{{item.edit}}" aria-label="{{item.editLabel}}" style="font: inherit; font-weight: 700; font-size: 15px; min-height: 44px; padding: 0 16px; border: 2px solid #141d52; border-radius: 8px; background: #fffaf0; color: #141d52; cursor: pointer">Modifier</button>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <h2 style="margin: 0; font-family: 'IM Fell English', Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.1; border-bottom: 2px solid #141d52; padding-bottom: 6px">Pour Sacha</h2>
+        <sc-for list="{{sacha}}" as="item" hint-placeholder-count="5">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 12px 14px; border: 2px solid #141d52; border-radius: 12px; background: {{item.bg}}">
+            <div aria-hidden="true" style="flex: none; width: 46px; height: 52px; border-radius: 23px 23px 6px 6px; background-color: #141d52; background-image: radial-gradient(2px 2px at 30% 34%, #f6efe0 50%, transparent 52%), radial-gradient(2px 2px at 68% 58%, #ffd23f 50%, transparent 52%)"></div>
+            <div style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+              <span style="font-family: 'IM Fell English', Georgia, serif; font-size: 21px; line-height: 1.2; overflow-wrap: anywhere">{{item.name}}</span>
+              <span style="font-size: 14px; color: #3b4375; overflow-wrap: anywhere">{{item.sub}}</span>
+            </div>
+            <sc-if value="{{item.taken}}" hint-placeholder-val="{{false}}">
+              <span style="font-size: 14px; font-weight: 700; padding: 4px 12px; border-radius: 999px; background: #ee5a40; color: #141d52">Réservé par {{item.who}}</span>
+            </sc-if>
+            <sc-if value="{{item.free}}" hint-placeholder-val="{{true}}">
+              <span style="font-size: 14px; font-weight: 700; padding: 2px 12px; border: 2px solid #141d52; border-radius: 999px; background: #fffaf0">Libre</span>
+            </sc-if>
+            <button type="button" onClick="{{item.edit}}" aria-label="{{item.editLabel}}" style="font: inherit; font-weight: 700; font-size: 15px; min-height: 44px; padding: 0 16px; border: 2px solid #141d52; border-radius: 8px; background: #fffaf0; color: #141d52; cursor: pointer">Modifier</button>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <aside aria-label="Fiche du cadeau" style="flex: 1 1 380px; min-width: 0; position: relative">
+      <div aria-hidden="true" style="position: absolute; top: 12px; left: 12px; right: -12px; bottom: -12px; background-image: radial-gradient(circle, #5b8fe0 1.3px, transparent 1.5px), radial-gradient(circle, #5b8fe0 1.3px, transparent 1.5px); background-size: 6px 6px; background-position: 0 0, 3px 3px"></div>
+      <form onSubmit="{{save}}" style="position: relative; margin: 0; background: #fffaf0; border: 2px solid #141d52; padding: 26px 24px 24px; display: flex; flex-direction: column; gap: 16px">
+        <h2 style="margin: 0; font-family: 'IM Fell English', Georgia, serif; font-weight: 400; font-size: 30px; line-height: 1.1">{{formTitle}}</h2>
+
+        <label for="f-child" style="display: flex; flex-direction: column; gap: 6px; font-weight: 700; font-size: 15px">Pour
+          <select id="f-child" value="{{fChild}}" onChange="{{setChild}}" style="font: inherit; font-weight: 400; min-height: 46px; box-sizing: border-box; width: 100%; padding: 8px 12px; border: 2px solid #141d52; border-radius: 8px; background: #fffaf0; color: #141d52">
+            <option value="Loula">Loula</option>
+            <option value="Sacha">Sacha</option>
+          </select>
+        </label>
+
+        <label for="f-name" style="display: flex; flex-direction: column; gap: 6px; font-weight: 700; font-size: 15px">Nom du cadeau
+          <input type="text" id="f-name" value="{{fName}}" onChange="{{setName}}" maxlength="140" style="font: inherit; font-weight: 400; min-height: 46px; box-sizing: border-box; width: 100%; padding: 8px 12px; border: 2px solid #141d52; border-radius: 8px; background: #fffaf0; color: #141d52">
+        </label>
+
+        <label for="f-url" style="display: flex; flex-direction: column; gap: 6px; font-weight: 700; font-size: 15px">Lien vers la boutique
+          <input type="url" id="f-url" value="{{fUrl}}" onChange="{{setUrl}}" placeholder="https://…" style="font: inherit; font-weight: 400; min-height: 46px; box-sizing: border-box; width: 100%; padding: 8px 12px; border: 2px solid #141d52; border-radius: 8px; background: #fffaf0; color: #141d52">
+        </label>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 14px">
+          <label for="f-price" style="display: flex; flex-direction: column; gap: 6px; font-weight: 700; font-size: 15px">Prix en euros
+            <input type="text" id="f-price" value="{{fPrice}}" onChange="{{setPrice}}" inputmode="decimal" placeholder="41,00" style="font: inherit; font-weight: 400; min-height: 46px; box-sizing: border-box; width: 100%; padding: 8px 12px; border: 2px solid #141d52; border-radius: 8px; background: #fffaf0; color: #141d52">
+          </label>
+          <label for="f-note" style="display: flex; flex-direction: column; gap: 6px; font-weight: 700; font-size: 15px">Précision
+            <input type="text" id="f-note" value="{{fNote}}" onChange="{{setNote}}" placeholder="Couleur, taille…" maxlength="80" style="font: inherit; font-weight: 400; min-height: 46px; box-sizing: border-box; width: 100%; padding: 8px 12px; border: 2px solid #141d52; border-radius: 8px; background: #fffaf0; color: #141d52">
+          </label>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px; padding: 14px; border: 2px dashed #141d52; border-radius: 10px">
+          <label for="f-photo" style="display: flex; flex-direction: column; gap: 6px; font-weight: 700; font-size: 15px">Photo du cadeau
+            <input type="url" id="f-photo" value="{{fPhoto}}" onChange="{{setPhoto}}" placeholder="Adresse de l'image, https://…" style="font: inherit; font-weight: 400; min-height: 46px; box-sizing: border-box; width: 100%; padding: 8px 12px; border: 2px solid #141d52; border-radius: 8px; background: #fffaf0; color: #141d52">
+          </label>
+          <p style="margin: 0; font-size: 14px; color: #3b4375">Sur le site de la boutique : clic droit sur la photo, puis « Copier l'adresse de l'image ». Sinon, choisissez un fichier.</p>
+          <label for="f-file" style="font-size: 14px; font-weight: 700">Ou un fichier de votre appareil</label>
+          <input type="file" id="f-file" accept="image/*" style="font: inherit; font-size: 14px; max-width: 100%">
+        </div>
+
+        <sc-if value="{{editTaken}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 10px; background: #ffd23f">
+            <span style="font-weight: 700">Réservé par {{editWho}}</span>
+            <button type="button" onClick="{{release}}" style="font: inherit; font-weight: 700; font-size: 15px; min-height: 44px; padding: 0 14px; border: 2px solid #141d52; border-radius: 8px; background: #fffaf0; color: #141d52; cursor: pointer">Libérer ce cadeau</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{saved}}" hint-placeholder-val="{{false}}">
+          <p role="status" style="margin: 0; font-weight: 700; color: #3f6a2c">C'est enregistré. La liste est à jour pour toute la famille.</p>
+        </sc-if>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 10px">
+          <button type="submit" style="font: inherit; font-weight: 700; min-height: 50px; padding: 0 24px; border: 0; border-radius: 8px; background: #141d52; color: #f6efe0; cursor: pointer; box-shadow: 5px 5px 0 #ee5a40">Enregistrer</button>
+          <button type="button" onClick="{{cancel}}" style="font: inherit; min-height: 50px; padding: 0 18px; border: 2px solid #141d52; border-radius: 8px; background: #fffaf0; color: #141d52; cursor: pointer">Annuler</button>
+        </div>
+
+        <sc-if value="{{askOff}}" hint-placeholder-val="{{true}}">
+          <button type="button" onClick="{{askDelete}}" style="align-self: flex-start; font: inherit; font-size: 15px; font-weight: 700; min-height: 44px; padding: 0 14px; border: 2px solid #b8371f; border-radius: 8px; background: #fffaf0; color: #b8371f; cursor: pointer">Supprimer ce cadeau</button>
+        </sc-if>
+        <sc-if value="{{askOn}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 12px 14px; border: 2px solid #b8371f; border-radius: 10px">
+            <span style="flex: 1 1 180px; font-weight: 700">Supprimer ce cadeau pour de bon ?</span>
+            <button type="button" onClick="{{doDelete}}" style="font: inherit; font-weight: 700; font-size: 15px; min-height: 44px; padding: 0 14px; border: 0; border-radius: 8px; background: #ee5a40; color: #141d52; cursor: pointer">Oui, supprimer</button>
+            <button type="button" onClick="{{cancelDelete}}" style="font: inherit; font-size: 15px; min-height: 44px; padding: 0 14px; border: 2px solid #141d52; border-radius: 8px; background: #fffaf0; color: #141d52; cursor: pointer">Non</button>
+          </div>
+        </sc-if>
+      </form>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1460}}'>
+class Component extends DCLogic {
+  seed() {
+    return [
+      { id: 'loula-pokemon', child: 'Loula', name: 'Jouet Pokémon (réf. PKW4160)', url: 'https://www.amazon.fr/Pok%C3%A9mon-PKW4160-Toys/dp/B0FB9MKTCN', price: '', note: 'Nom exact à vérifier', photo: '', who: '' },
+      { id: 'loula-cleopatre', child: 'Loula', name: 'Mon déguisement de Cléopâtre', url: 'https://www.oxybul.com/deguisement-robe-cleopatre-8-10-ans-oxybul-228708', price: '', note: 'Taille 8-10 ans', photo: '', who: '' },
+      { id: 'loula-sabre', child: 'Loula', name: 'Petit sabre laser RK1', url: 'https://le-sabre-laser.fr/products/petit-sabre-laser', price: '89,99', note: 'Elle veut le bleu', photo: '', who: '' },
+      { id: 'loula-jessie', child: 'Loula', name: 'Figurine Jessie interactive, Toy Story', url: 'https://www.disneystore.fr/figurine-jessie-interactive-toy-story-417138058108.html', price: '41,00', note: '', photo: '', who: 'Les parents' },
+      { id: 'loula-pilepoil', child: 'Loula', name: 'Figurine Pile-Poil interactive, Toy Story', url: 'https://www.disneystore.fr/figurine-pile-poil-interactive-toy-story-417138059358.html', price: '41,00', note: '', photo: '', who: 'Les parents' },
+      { id: 'sacha-salameche', child: 'Sacha', name: 'Pokémon Salamèche + Poké Ball Clip', url: 'https://www.amazon.fr/Pok%C3%A9mon-Salam%C3%A8che-Pok%C3%A9-Ball-Clip/dp/B0FLK84JBY', price: '', note: '', photo: '', who: '' },
+      { id: 'sacha-ironman', child: 'Sacha', name: 'Déguisement Iron Man pour enfants', url: 'https://www.disneystore.fr/deguisement-iron-man-pour-enfants-5502045240322M.html', price: '53,00', note: 'Bientôt disponible', photo: '', who: '' },
+      { id: 'sacha-spiderman', child: 'Sacha', name: 'Déguisement Spider-Man, effets sonores et lumineux', url: 'https://www.disneystore.fr/deguisement-spider-man-avec-effets-sonores-et-lumineux-pour-enfants-5502045240342M.html', price: '61,00', note: 'Bientôt disponible', photo: '', who: '' },
+      { id: 'sacha-sabre', child: 'Sacha', name: 'Petit sabre laser RK1', url: 'https://le-sabre-laser.fr/products/petit-sabre-laser', price: '89,99', note: 'Il veut le vert', photo: '', who: '' },
+      { id: 'sacha-buzz', child: 'Sacha', name: 'Figurine Buzz l\'Éclair transformable, Toy Story 5', url: 'https://www.disneystore.fr/figurine-buzz-l-eclair-transformable-toy-story%C2%A05---20-cm-417130892083.html', price: '24,00', note: '', photo: '', who: 'Les parents' }
+    ];
+  }
+
+  state = {
+    gifts: this.seed(),
+    editing: 'loula-jessie',
+    form: { child: 'Loula', name: 'Figurine Jessie interactive, Toy Story', url: 'https://www.disneystore.fr/figurine-jessie-interactive-toy-story-417138058108.html', price: '41,00', note: '', photo: '' },
+    confirm: false,
+    saved: false
+  };
+
+  blank() { return { child: 'Loula', name: '', url: '', price: '', note: '', photo: '' }; }
+  formOf(g) { return { child: g.child, name: g.name, url: g.url, price: g.price, note: g.note, photo: g.photo }; }
+
+  renderVals() {
+    const s = this.state;
+    const f = s.form;
+    const cur = s.gifts.find((g) => g.id === s.editing) || null;
+    const set = (k) => (e) => {
+      const next = Object.assign({}, this.state.form);
+      next[k] = e.target.value;
+      this.setState({ form: next, saved: false });
+    };
+    const host = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; } };
+    const row = (g) => {
+      const parts = [g.price ? g.price + ' €' : 'Prix à vérifier'];
+      const h = host(g.url);
+      if (h) parts.push(h);
+      if (g.note) parts.push(g.note);
+      return {
+        name: g.name,
+        sub: parts.join(' · '),
+        taken: !!g.who,
+        free: !g.who,
+        who: g.who,
+        bg: s.editing === g.id ? '#ffd23f' : '#fffaf0',
+        editLabel: 'Modifier ' + g.name,
+        edit: () => this.setState({ editing: g.id, form: this.formOf(g), confirm: false, saved: false })
+      };
+    };
+    const takenCount = s.gifts.filter((g) => !!g.who).length;
+
+    return {
+      loula: s.gifts.filter((g) => g.child === 'Loula').map(row),
+      sacha: s.gifts.filter((g) => g.child === 'Sacha').map(row),
+      summary: s.gifts.length + ' cadeaux, dont ' + takenCount + (takenCount > 1 ? ' réservés' : ' réservé'),
+      formTitle: cur ? 'Modifier le cadeau' : 'Ajouter un cadeau',
+      editTaken: !!(cur && cur.who),
+      editWho: cur ? cur.who : '',
+      askOff: !!cur && !s.confirm,
+      askOn: !!cur && s.confirm,
+      saved: s.saved,
+      fChild: f.child, fName: f.name, fUrl: f.url, fPrice: f.price, fNote: f.note, fPhoto: f.photo,
+      setChild: set('child'), setName: set('name'), setUrl: set('url'), setPrice: set('price'), setNote: set('note'), setPhoto: set('photo'),
+      addNew: () => this.setState({ editing: null, form: this.blank(), confirm: false, saved: false }),
+      cancel: () => {
+        const st = this.state;
+        const g = st.gifts.find((x) => x.id === st.editing);
+        this.setState({ form: g ? this.formOf(g) : this.blank(), confirm: false, saved: false });
+      },
+      save: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        const st = this.state;
+        const ff = st.form;
+        if (!ff.name.trim()) return;
+        if (st.gifts.some((g) => g.id === st.editing)) {
+          this.setState({ gifts: st.gifts.map((g) => (g.id === st.editing ? Object.assign({}, g, ff) : g)), confirm: false, saved: true });
+        } else {
+          const id = 'n' + Date.now();
+          this.setState({ gifts: st.gifts.concat([Object.assign({ id: id, who: '' }, ff)]), editing: id, confirm: false, saved: true });
+        }
+      },
+      release: () => {
+        const st = this.state;
+        this.setState({ gifts: st.gifts.map((g) => (g.id === st.editing ? Object.assign({}, g, { who: '' }) : g)), saved: false });
+      },
+      askDelete: () => this.setState({ confirm: true }),
+      cancelDelete: () => this.setState({ confirm: false }),
+      doDelete: () => {
+        const st = this.state;
+        this.setState({ gifts: st.gifts.filter((g) => g.id !== st.editing), editing: null, form: this.blank(), confirm: false, saved: false });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

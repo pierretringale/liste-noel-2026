@@ -1,0 +1,102 @@
+[
+  {
+    "child": "Loula",
+    "name": "Jouet Pokémon (réf. PKW4160)",
+    "url": "https://www.amazon.fr/Pok%C3%A9mon-PKW4160-Toys/dp/B0FB9MKTCN",
+    "price": null,
+    "note": "Nom exact à vérifier",
+    "photo_url": null,
+    "position": 10,
+    "claimed_by": null
+  },
+  {
+    "child": "Loula",
+    "name": "Mon déguisement de Cléopâtre",
+    "url": "https://www.oxybul.com/deguisement-robe-cleopatre-8-10-ans-oxybul-228708",
+    "price": null,
+    "note": "Taille 8-10 ans",
+    "photo_url": null,
+    "position": 20,
+    "claimed_by": null
+  },
+  {
+    "child": "Loula",
+    "name": "Petit sabre laser RK1",
+    "url": "https://le-sabre-laser.fr/products/petit-sabre-laser",
+    "price": 89.99,
+    "note": "Elle veut le bleu",
+    "photo_url": null,
+    "position": 30,
+    "claimed_by": null
+  },
+  {
+    "child": "Loula",
+    "name": "Figurine Jessie interactive, Toy Story",
+    "url": "https://www.disneystore.fr/figurine-jessie-interactive-toy-story-417138058108.html",
+    "price": 41.0,
+    "note": null,
+    "photo_url": null,
+    "position": 40,
+    "claimed_by": "Les parents"
+  },
+  {
+    "child": "Loula",
+    "name": "Figurine Pile-Poil interactive, Toy Story",
+    "url": "https://www.disneystore.fr/figurine-pile-poil-interactive-toy-story-417138059358.html",
+    "price": 41.0,
+    "note": null,
+    "photo_url": null,
+    "position": 50,
+    "claimed_by": "Les parents"
+  },
+  {
+    "child": "Sacha",
+    "name": "Pokémon Salamèche + Poké Ball Clip",
+    "url": "https://www.amazon.fr/Pok%C3%A9mon-Salam%C3%A8che-Pok%C3%A9-Ball-Clip/dp/B0FLK84JBY",
+    "price": null,
+    "note": null,
+    "photo_url": null,
+    "position": 10,
+    "claimed_by": null
+  },
+  {
+    "child": "Sacha",
+    "name": "Déguisement Iron Man pour enfants",
+    "url": "https://www.disneystore.fr/deguisement-iron-man-pour-enfants-5502045240322M.html",
+    "price": 53.0,
+    "note": "Bientôt disponible",
+    "photo_url": null,
+    "position": 20,
+    "claimed_by": null
+  },
+  {
+    "child": "Sacha",
+    "name": "Déguisement Spider-Man, effets sonores et lumineux",
+    "url": "https://www.disneystore.fr/deguisement-spider-man-avec-effets-sonores-et-lumineux-pour-enfants-5502045240342M.html",
+    "price": 61.0,
+    "note": "Bientôt disponible",
+    "photo_url": null,
+    "position": 30,
+    "claimed_by": null
+  },
+  {
+    "child": "Sacha",
+    "name": "Petit sabre laser RK1",
+    "url": "https://le-sabre-laser.fr/products/petit-sabre-laser",
+    "price": 89.99,
+    "note": "Il veut le vert",
+    "photo_url": null,
+    "position": 40,
+    "claimed_by": null
+  },
+  {
+    "child": "Sacha",
+    "name": "Figurine Buzz l'Éclair transformable, Toy Story 5",
+    "url": "https://www.disneystore.fr/figurine-buzz-l-eclair-transformable-toy-story%C2%A05---20-cm-417130892083.html",
+    "price": 24.0,
+    "note": null,
+    "photo_url": null,
+    "position": 50,
+    "claimed_by": "Les parents"
+  }
+]

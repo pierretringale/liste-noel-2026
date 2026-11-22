@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Connexion parents</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Great+Vibes&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#b8371f}a:hover{color:#141d52}
+</style>
+</helmet>
+<div style="width: 520px; height: 680px; box-sizing: border-box; padding: 48px 40px; background: #f6efe0; color: #141d52; font-family: 'Atkinson Hyperlegible', Verdana, sans-serif; font-size: 17px; line-height: 1.5; display: flex; align-items: center; justify-content: center">
+  <div style="position: relative; width: 100%">
+    <div aria-hidden="true" style="position: absolute; top: 12px; left: 12px; right: -12px; bottom: -12px; background-image: radial-gradient(circle, #5b8fe0 1.3px, transparent 1.5px), radial-gradient(circle, #5b8fe0 1.3px, transparent 1.5px); background-size: 6px 6px; background-position: 0 0, 3px 3px"></div>
+    <form onSubmit="{{stop}}" style="position: relative; margin: 0; background: #fffaf0; border: 2px solid #141d52; padding: 50px 34px 30px; display: flex; flex-direction: column; gap: 14px">
+      <svg aria-hidden="true" viewBox="-64 -26 128 52" style="position: absolute; top: -28px; left: 50%; margin-left: -58px; width: 116px; height: 47px">
+        <path d="M-6 0 C -14 -10 -20 -6 -24 -14 C -28 -6 -36 -8 -40 -16 C -42 -6 -52 -4 -58 0 C -52 4 -42 6 -40 16 C -36 8 -28 6 -24 14 C -20 6 -14 10 -6 0 Z" fill="#557d3a"></path>
+        <path d="M6 0 C 14 -10 20 -6 24 -14 C 28 -6 36 -8 40 -16 C 42 -6 52 -4 58 0 C 52 4 42 6 40 16 C 36 8 28 6 24 14 C 20 6 14 10 6 0 Z" fill="#3f6a2c"></path>
+        <circle cx="-5" cy="3" r="6" fill="#ee5a40"></circle><circle cx="6" cy="3" r="6" fill="#ee5a40"></circle><circle cx="0" cy="-6" r="6" fill="#ee5a40"></circle>
+      </svg>
+      <p style="margin: 0; font-family: 'Great Vibes', 'Brush Script MT', cursive; font-size: 44px; line-height: 1.05; color: #d9472f">Espace parents</p>
+      <h1 style="margin: 0; font-family: 'IM Fell English', Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.15">Réservé aux lutins en chef</h1>
+      <p style="margin: 0; color: #3b4375">Entrez le code parents pour ajouter des cadeaux ou modifier la liste.</p>
+      <label for="code" style="margin-top: 6px; font-weight: 700; font-size: 15px">Code parents</label>
+      <input type="password" id="code" value="{{code}}" onChange="{{setCode}}" autocomplete="current-password" style="font: inherit; min-height: 50px; box-sizing: border-box; width: 100%; padding: 8px 12px; border: 2px solid #141d52; border-radius: 8px; background: #fffaf0; color: #141d52">
+      <label for="keep" style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 16px"><input type="checkbox" id="keep" checked="{{keep}}" onChange="{{toggleKeep}}" style="width: 22px; height: 22px; margin: 0; accent-color: #141d52; flex: none">Rester connecté sur cet appareil</label>
+      <a href="Parents.dc.html" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; border-radius: 8px; background: #141d52; color: #f6efe0; font-weight: 700; font-size: 18px; text-decoration: none; box-shadow: 5px 5px 0 #ee5a40"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Entrer</a>
+      <a href="Main.dc.html" style="margin-top: 8px; align-self: center; font-size: 15px">Retour à la liste</a>
+    </form>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":520,"height":680}}'>
+class Component extends DCLogic {
+  state = { code: '', keep: true };
+
+  renderVals() {
+    return {
+      code: this.state.code,
+      keep: this.state.keep,
+      setCode: (e) => this.setState({ code: e.target.value }),
+      toggleKeep: () => this.setState({ keep: !this.state.keep }),
+      stop: (e) => { if (e && e.preventDefault) e.preventDefault(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

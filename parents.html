@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Espace parents — Le Noël de Sacha et Loula</title>
+<link rel="stylesheet" href="css/style.css">
+<script type="module" src="js/parents.js"></script>
+</head>
+<body>
+
+<!-- ===== Connexion (maquette Connexion.dc.html) ===== -->
+<main class="login-page" id="vue-connexion" hidden>
+  <div class="login-box">
+    <div class="dots" aria-hidden="true"></div>
+    <form class="login-form" id="form-connexion">
+      <svg class="holly" aria-hidden="true" viewBox="-64 -26 128 52">
+        <path d="M-6 0 C -14 -10 -20 -6 -24 -14 C -28 -6 -36 -8 -40 -16 C -42 -6 -52 -4 -58 0 C -52 4 -42 6 -40 16 C -36 8 -28 6 -24 14 C -20 6 -14 10 -6 0 Z" fill="#557d3a"></path>
+        <path d="M6 0 C 14 -10 20 -6 24 -14 C 28 -6 36 -8 40 -16 C 42 -6 52 -4 58 0 C 52 4 42 6 40 16 C 36 8 28 6 24 14 C 20 6 14 10 6 0 Z" fill="#3f6a2c"></path>
+        <circle cx="-5" cy="3" r="6" fill="#ee5a40"></circle><circle cx="6" cy="3" r="6" fill="#ee5a40"></circle><circle cx="0" cy="-6" r="6" fill="#ee5a40"></circle>
+      </svg>
+      <p class="login-kicker">Espace parents</p>
+      <h1 class="login-title">Réservé aux lutins en chef</h1>
+      <p class="login-text">Entrez le code parents pour ajouter des cadeaux ou modifier la liste.</p>
+      <label class="login-label" for="code">Code parents</label>
+      <input class="login-input" type="password" id="code" autocomplete="current-password" required>
+      <label class="login-keep" for="keep"><input type="checkbox" id="keep" checked>Rester connecté sur cet appareil</label>
+      <p class="form-error" id="erreur-connexion" role="alert"></p>
+      <button type="submit" class="btn-lock" id="btn-entrer"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Entrer</button>
+      <a class="login-back" href="index.html">Retour à la liste</a>
+    </form>
+  </div>
+</main>
+
+<!-- ===== Espace parents (maquette Parents.dc.html) ===== -->
+<div id="vue-parents" hidden>
+  <header class="p-head">
+    <div class="p-brand">
+      <span class="p-brand-kicker">Espace parents</span>
+      <span class="p-brand-title">Le Noël de Sacha &amp; Loula</span>
+    </div>
+    <nav class="p-nav" aria-label="Navigation de l'espace parents">
+      <a class="pill" href="index.html">Voir la liste</a>
+      <button type="button" class="pill is-gold" id="btn-deconnexion">Se déconnecter</button>
+    </nav>
+  </header>
+  <div class="p-ribbon" aria-hidden="true"></div>
+
+  <div class="p-main">
+    <section class="p-list" aria-label="Les cadeaux de la liste">
+      <div class="p-list-head">
+        <div>
+          <h1 class="p-title">Les cadeaux de la liste</h1>
+          <p class="p-summary" id="resume"></p>
+        </div>
+        <button type="button" class="btn-add" id="btn-ajouter"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Ajouter un cadeau</button>
+      </div>
+      <p class="alert" id="alerte-parents" role="alert" hidden>La liste ne répond pas pour le moment. Réessayez dans un instant.</p>
+      <div class="p-group">
+        <h2 class="p-group-title">Pour Loula</h2>
+        <div class="p-group" id="liste-Loula"></div>
+      </div>
+      <div class="p-group">
+        <h2 class="p-group-title">Pour Sacha</h2>
+        <div class="p-group" id="liste-Sacha"></div>
+      </div>
+    </section>
+
+    <aside class="p-aside" aria-label="Fiche du cadeau">
+      <div class="dots" aria-hidden="true"></div>
+      <form class="p-form" id="fiche">
+        <h2 class="p-form-title" id="fiche-titre" tabindex="-1">Ajouter un cadeau</h2>
+
+        <label class="field" for="f-child">Pour
+          <select id="f-child">
+            <option value="Loula">Loula</option>
+            <option value="Sacha">Sacha</option>
+          </select>
+        </label>
+
+        <label class="field" for="f-name">Nom du cadeau
+          <input type="text" id="f-name" maxlength="140" required>
+        </label>
+
+        <label class="field" for="f-url">Lien vers la boutique
+          <input type="url" id="f-url" placeholder="https://…" pattern="https?://.*">
+        </label>
+
+        <div class="field-pair">
+          <label class="field" for="f-price">Prix en euros
+            <input type="text" id="f-price" inputmode="decimal" placeholder="41,00">
+          </label>
+          <label class="field" for="f-note">Précision
+            <input type="text" id="f-note" placeholder="Couleur, taille…" maxlength="80">
+          </label>
+        </div>
+
+        <div class="photo-box">
+          <label class="field" for="f-photo">Photo du cadeau
+            <input type="url" id="f-photo" placeholder="Adresse de l'image, https://…" pattern="https://.*">
+          </label>
+          <p class="photo-help">Sur le site de la boutique : clic droit sur la photo, puis « Copier l'adresse de l'image ». Sinon, choisissez un fichier.</p>
+          <label class="photo-file-label" for="f-file">Ou un fichier de votre appareil</label>
+          <input class="photo-file" type="file" id="f-file" accept="image/*">
+          <p class="photo-state" id="etat-photo" aria-live="polite"></p>
+        </div>
+
+        <div class="taken-bar" id="barre-reserve" hidden>
+          <span id="reserve-par"></span>
+          <button type="button" class="btn-line" id="btn-liberer">Libérer ce cadeau</button>
+        </div>
+
+        <p class="saved-msg" id="msg-enregistre" role="status"></p>
+        <p class="form-error" id="erreur-fiche" role="alert"></p>
+
+        <div class="p-actions">
+          <button type="submit" class="btn-save" id="btn-enregistrer">Enregistrer</button>
+          <button type="button" class="btn-cancel" id="btn-annuler">Annuler</button>
+        </div>
+
+        <button type="button" class="btn-delete" id="btn-supprimer" hidden>Supprimer ce cadeau</button>
+        <div class="delete-ask" id="confirm-suppr" hidden>
+          <span>Supprimer ce cadeau pour de bon ?</span>
+          <button type="button" class="btn-danger" id="btn-suppr-oui">Oui, supprimer</button>
+          <button type="button" class="btn-no" id="btn-suppr-non">Non</button>
+        </div>
+      </form>
+    </aside>
+  </div>
+</div>
+
+</body>
+</html>

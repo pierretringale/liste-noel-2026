@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Le Noël de Sacha et Loula</title>
+<link rel="preload" href="assets/fonts/IMFellEnglish-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/AtkinsonHyperlegible-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<script type="module" src="js/liste.js"></script>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-moon" aria-hidden="true"></div>
+  <svg class="tw hero-star s1" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="#f2d58a"></path></svg>
+  <svg class="tw hero-star s2" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="#ffffff"></path></svg>
+  <svg class="tw hero-star s3" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="#ffffff"></path></svg>
+  <svg class="tw hero-star s4" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="#f2d58a"></path></svg>
+  <svg class="tw hero-star s5" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="#ffffff"></path></svg>
+  <svg class="tw hero-star s6" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="#f2d58a"></path></svg>
+
+  <p class="hero-kicker">Il était une fois…</p>
+  <h1 class="hero-title">Le Noël de Sacha &amp; Loula</h1>
+  <p class="hero-sub">La liste de leurs souhaits, à ouvrir quand les enfants dorment.</p>
+
+  <img class="hero-img" src="assets/hero-scene.webp" alt="" aria-hidden="true" width="2560" height="520">
+</header>
+
+<div class="ribbon" aria-hidden="true"></div>
+
+<main>
+  <section class="intro" aria-label="Mot d'introduction">
+    <div class="letter-wrap"><div class="dots" aria-hidden="true"></div><div class="letter">
+      <svg class="holly" aria-hidden="true" viewBox="-64 -26 128 52">
+        <path d="M-6 0 C -14 -10 -20 -6 -24 -14 C -28 -6 -36 -8 -40 -16 C -42 -6 -52 -4 -58 0 C -52 4 -42 6 -40 16 C -36 8 -28 6 -24 14 C -20 6 -14 10 -6 0 Z" fill="#557d3a"></path>
+        <path d="M6 0 C 14 -10 20 -6 24 -14 C 28 -6 36 -8 40 -16 C 42 -6 52 -4 58 0 C 52 4 42 6 40 16 C 36 8 28 6 24 14 C 20 6 14 10 6 0 Z" fill="#3f6a2c"></path>
+        <circle cx="-5" cy="3" r="6" fill="#ee5a40"></circle><circle cx="6" cy="3" r="6" fill="#ee5a40"></circle><circle cx="0" cy="-6" r="6" fill="#ee5a40"></circle>
+      </svg>
+      <p class="letter-hello">Chère famille,</p>
+      <p class="letter-p">Cette année encore, deux petits lutins ont écrit leur lettre avec le plus grand sérieux. Sacha et Loula ont été sages, ou presque, et le Père Noël aura bien besoin d'un coup de main.</p>
+      <p class="letter-p">Voici leurs souhaits. Choisissez celui qui vous fait envie, cochez-le et laissez votre prénom. La magie fera le reste, et personne n'arrivera au pied du sapin avec le même paquet.</p>
+      <p class="letter-p is-italic">Et surtout, pas un mot aux enfants.</p>
+      <p class="letter-sign">Les parents</p>
+    </div></div>
+  </section>
+
+  <section class="status" aria-label="Où en est la liste">
+    <div class="counter">
+      <div><span class="counter-num" id="n-total">…</span><span class="counter-txt">souhaits sur la liste</span></div>
+      <div><span class="counter-num" id="n-taken">…</span><span class="counter-txt">déjà réservés</span></div>
+      <div><span class="counter-num" id="n-free">…</span><span class="counter-txt">attendent leur bonne fée</span></div>
+    </div>
+    <div class="filter" role="group" aria-label="Filtrer les souhaits">
+      <button type="button" id="f-all" aria-pressed="true">Tous les souhaits</button>
+      <button type="button" id="f-free" aria-pressed="false">Encore libres</button>
+    </div>
+    <p class="alert" id="alert" role="alert" hidden>La liste ne répond pas pour le moment. Réessayez dans un instant.</p>
+  </section>
+
+  <section class="kid" aria-label="Les souhaits de Loula">
+    <div class="kid-head">
+      <svg class="kid-ornament" aria-hidden="true" viewBox="0 0 120 16"><path d="M0 8 H44 M76 8 H120" stroke="#141d52" stroke-width="1.5"></path><path d="M60 0 L62.5 5.5 L68 8 L62.5 10.5 L60 16 L57.5 10.5 L52 8 L57.5 5.5 Z" fill="#ee5a40"></path></svg>
+      <h2 class="kid-title">Les souhaits de Loula</h2>
+      <p class="kid-count" id="count-Loula"></p>
+    </div>
+    <p class="kid-empty" id="empty-Loula" hidden>Tous les souhaits de Loula ont trouvé leur bonne fée.</p>
+    <div class="grid" id="grid-Loula"></div>
+  </section>
+
+  <section class="kid is-last" aria-label="Les souhaits de Sacha">
+    <div class="kid-head">
+      <svg class="kid-ornament" aria-hidden="true" viewBox="0 0 120 16"><path d="M0 8 H44 M76 8 H120" stroke="#141d52" stroke-width="1.5"></path><path d="M60 0 L62.5 5.5 L68 8 L62.5 10.5 L60 16 L57.5 10.5 L52 8 L57.5 5.5 Z" fill="#ee5a40"></path></svg>
+      <h2 class="kid-title">Les souhaits de Sacha</h2>
+      <p class="kid-count" id="count-Sacha"></p>
+    </div>
+    <p class="kid-empty" id="empty-Sacha" hidden>Tous les souhaits de Sacha ont trouvé leur bonne fée.</p>
+    <div class="grid" id="grid-Sacha"></div>
+  </section>
+
+  <p class="sr-only" id="announce" aria-live="polite"></p>
+</main>
+
+<footer class="foot">
+  <p class="foot-help">Pour réserver un souhait, cochez « Je l'offre », écrivez votre prénom et validez. Pour changer d'avis, décochez.</p>
+  <a class="btn-gold" href="parents.html"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Connexion parents</a>
+</footer>
+
+</body>
+</html>
