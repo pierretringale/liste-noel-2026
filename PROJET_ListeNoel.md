@@ -73,6 +73,9 @@ Voir README.md.
 | 22/11/2026 | `kit/BRIEF.md` exclu du dépôt public | Il décrit la dette RLS de la base mutualisée | Le publier donnerait une piste d'attaque sur d'autres tables de la base |
 | 22/11/2026 | Sabre « violet » teinté en prune `#8a3440` | Aucune teinte violette dans la maquette ni la charte | — |
 | 22/11/2026 | « Annuler » referme la fiche (retour à « Ajouter un cadeau ») au lieu de recharger le cadeau | Retour de Pierre : impossible de refermer un cadeau après l'avoir modifié | Revenir à `chargerFiche(etat.enCours)` = fiche bloquée sur le dernier cadeau |
+| 22/11/2026 | La fiche parents est masquée par défaut, ouverte par « Modifier » / « Ajouter un cadeau », refermée par Annuler / Enregistrer / Supprimer ; message « C'est enregistré » affiché au-dessus de la liste | Demande de Pierre : la fiche doit disparaître, pas seulement se vider | Écart assumé à la maquette Parents.dc.html (fiche toujours visible) |
+| 22/11/2026 | 10 photos fournies par Pierre réduites (600 px, JPEG 0,82) et déposées dans `noel-photos` via `supabase storage cp --experimental --remote=…`, puis reliées en SQL | Les images collées dans la conversation ne sont pas des fichiers ; passage par un dossier | Les parents peuvent toujours remplacer une photo depuis la fiche |
+| 22/11/2026 | Cadeau de Sacha renommé « Pokémon Bulbizarre + Poké Ball Clip » | Confirmé par Pierre (la photo et le produit sont Bulbizarre) | — |
 | 22/11/2026 | « Enregistrer » referme aussi la fiche après succès (message « C'est enregistré » conservé) ; en cas d'erreur la fiche reste ouverte | Demande de Pierre, même logique qu'Annuler | — |
 
 ## ERREURS CONNUES
