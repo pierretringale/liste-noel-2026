@@ -343,7 +343,7 @@ function demarrerPage() {
   $('liste-Loula').addEventListener('click', surModifier);
   $('liste-Sacha').addEventListener('click', surModifier);
   $('fiche').addEventListener('submit', enregistrer);
-  $('btn-annuler').addEventListener('click', () => chargerFiche(etat.enCours));
+  $('btn-annuler').addEventListener('click', () => chargerFiche(null));
   $('btn-liberer').addEventListener('click', libererCadeau);
   $('btn-supprimer').addEventListener('click', () => demanderSuppression(true));
   $('btn-suppr-non').addEventListener('click', () => demanderSuppression(false));

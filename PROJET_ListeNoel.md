@@ -72,9 +72,11 @@ Voir README.md.
 | 22/11/2026 | CLI Supabase installée (Homebrew) et connectée | Le connecteur MCP ne sait pas poser de secrets | Sans CLI, les secrets se posent à la main dans le tableau de bord |
 | 22/11/2026 | `kit/BRIEF.md` exclu du dépôt public | Il décrit la dette RLS de la base mutualisée | Le publier donnerait une piste d'attaque sur d'autres tables de la base |
 | 22/11/2026 | Sabre « violet » teinté en prune `#8a3440` | Aucune teinte violette dans la maquette ni la charte | — |
+| 22/11/2026 | « Annuler » referme la fiche (retour à « Ajouter un cadeau ») au lieu de recharger le cadeau | Retour de Pierre : impossible de refermer un cadeau après l'avoir modifié | Revenir à `chargerFiche(etat.enCours)` = fiche bloquée sur le dernier cadeau |
 
 ## ERREURS CONNUES
 
 | Date | Symptôme | Cause racine | Fix appliqué | Récurrent |
 |---|---|---|---|---|
+| 22/11/2026 | Espace parents : impossible de refermer un cadeau après l'avoir modifié | « Annuler » rechargeait le cadeau en cours au lieu de vider la fiche | `btn-annuler` → `chargerFiche(null)` | Non |
 | 22/11/2026 | `supabase secrets set` ne pose rien, sans message visible | CLI 3.x : en mode agent, toute modification exige `--yes` | Ajouter `--yes` (et `--remote=<ref>`) | Oui, à chaque commande CLI qui modifie le projet |
