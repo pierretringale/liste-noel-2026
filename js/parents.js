@@ -275,7 +275,7 @@ async function enregistrer(e) {
       if (!reponsePhoto.data.ok) return afficherErreurFiche(reponsePhoto.data.error);
     }
     await relireListe();
-    chargerFiche(etat.enCours);
+    chargerFiche(null);
     $('msg-enregistre').textContent = MSG_ENREGISTRE;
   } catch (err) {
     if (err.message === 'session_expiree') return;

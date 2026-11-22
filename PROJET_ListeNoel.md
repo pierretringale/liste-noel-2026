@@ -73,6 +73,7 @@ Voir README.md.
 | 22/11/2026 | `kit/BRIEF.md` exclu du dépôt public | Il décrit la dette RLS de la base mutualisée | Le publier donnerait une piste d'attaque sur d'autres tables de la base |
 | 22/11/2026 | Sabre « violet » teinté en prune `#8a3440` | Aucune teinte violette dans la maquette ni la charte | — |
 | 22/11/2026 | « Annuler » referme la fiche (retour à « Ajouter un cadeau ») au lieu de recharger le cadeau | Retour de Pierre : impossible de refermer un cadeau après l'avoir modifié | Revenir à `chargerFiche(etat.enCours)` = fiche bloquée sur le dernier cadeau |
+| 22/11/2026 | « Enregistrer » referme aussi la fiche après succès (message « C'est enregistré » conservé) ; en cas d'erreur la fiche reste ouverte | Demande de Pierre, même logique qu'Annuler | — |
 
 ## ERREURS CONNUES
 
