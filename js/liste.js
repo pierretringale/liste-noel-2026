@@ -9,7 +9,8 @@ import { getGifts, post, shopOf, priceText, esc, store } from './api.js';
 
 // === ÉTAT DE LA PAGE ===
 const REFRESH_MS = 30000;
-const CHILDREN = ['Loula', 'Sacha'];
+const CHILDREN = ['Loula', 'Sacha', 'Les deux'];
+const idDeSection = (enfant) => enfant.replace(/ /g, '-');
 const CACHE_KEY = 'noel:derniere-liste';
 const NAME_KEY = 'noel:prenom';
 
@@ -127,9 +128,12 @@ function dessinerPage() {
   for (const enfant of CHILDREN) {
     const siens = tous.filter((c) => c.child === enfant);
     const visibles = siens.filter((c) => etat.filtre === 'all' || !c.claimed_by);
-    document.getElementById('count-' + enfant).textContent = ligneCompte(siens);
-    document.getElementById('empty-' + enfant).hidden = visibles.length !== 0;
-    document.getElementById('grid-' + enfant).innerHTML = visibles.map(dessinerCarte).join('');
+    const suffixe = idDeSection(enfant);
+    const grille = document.getElementById('grid-' + suffixe);
+    grille.closest('section').hidden = siens.length === 0;
+    document.getElementById('count-' + suffixe).textContent = ligneCompte(siens);
+    document.getElementById('empty-' + suffixe).hidden = visibles.length !== 0;
+    grille.innerHTML = visibles.map(dessinerCarte).join('');
   }
   restaurerFocus(focus);
 }
@@ -311,7 +315,7 @@ function demarrerPage() {
     try { etat.cadeaux = JSON.parse(enCache); dessinerPage(); } catch (e) { /* cache illisible */ }
   }
   for (const enfant of CHILDREN) {
-    const grille = document.getElementById('grid-' + enfant);
+    const grille = document.getElementById('grid-' + idDeSection(enfant));
     grille.addEventListener('change', surCoche);
     grille.addEventListener('click', surClic);
     grille.addEventListener('input', surSaisie);

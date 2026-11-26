@@ -136,8 +136,8 @@ function dessinerLigne(cadeau) {
 function dessinerListe() {
   const reserves = etat.cadeaux.filter((c) => c.claimed_by).length;
   $('resume').textContent = etat.cadeaux.length + ' cadeaux, dont ' + reserves + (reserves > 1 ? ' réservés' : ' réservé');
-  for (const enfant of ['Loula', 'Sacha']) {
-    $('liste-' + enfant).innerHTML = etat.cadeaux.filter((c) => c.child === enfant).map(dessinerLigne).join('');
+  for (const enfant of ['Loula', 'Sacha', 'Les deux']) {
+    $('liste-' + enfant.replace(/ /g, '-')).innerHTML = etat.cadeaux.filter((c) => c.child === enfant).map(dessinerLigne).join('');
   }
   dessinerBarreReserve();
 }
@@ -357,6 +357,7 @@ function demarrerPage() {
   $('btn-ajouter').addEventListener('click', () => { ouvrirFiche(null); $('f-name').focus(); });
   $('liste-Loula').addEventListener('click', surModifier);
   $('liste-Sacha').addEventListener('click', surModifier);
+  $('liste-Les-deux').addEventListener('click', surModifier);
   $('fiche').addEventListener('submit', enregistrer);
   $('btn-annuler').addEventListener('click', () => fermerFiche());
   $('btn-liberer').addEventListener('click', libererCadeau);

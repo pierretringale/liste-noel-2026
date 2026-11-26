@@ -9,7 +9,7 @@
 <link rel="preload" href="assets/fonts/IMFellEnglish-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/AtkinsonHyperlegible-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
-<script type="module" src="js/liste.js"></script>
+<script type="module" src="js/liste.js?v=2"></script>
 </head>
 <body>
 
@@ -70,7 +70,7 @@
     <div class="grid" id="grid-Loula"></div>
   </section>
 
-  <section class="kid is-last" aria-label="Les souhaits de Sacha">
+  <section class="kid" aria-label="Les souhaits de Sacha">
     <div class="kid-head">
       <svg class="kid-ornament" aria-hidden="true" viewBox="0 0 120 16"><path d="M0 8 H44 M76 8 H120" stroke="#141d52" stroke-width="1.5"></path><path d="M60 0 L62.5 5.5 L68 8 L62.5 10.5 L60 16 L57.5 10.5 L52 8 L57.5 5.5 Z" fill="#ee5a40"></path></svg>
       <h2 class="kid-title">Les souhaits de Sacha</h2>
@@ -78,6 +78,16 @@
     </div>
     <p class="kid-empty" id="empty-Sacha" hidden>Tous les souhaits de Sacha ont trouvé leur bonne fée.</p>
     <div class="grid" id="grid-Sacha"></div>
+  </section>
+
+  <section class="kid is-last" aria-label="Pour les deux" hidden>
+    <div class="kid-head">
+      <svg class="kid-ornament" aria-hidden="true" viewBox="0 0 120 16"><path d="M0 8 H44 M76 8 H120" stroke="#141d52" stroke-width="1.5"></path><path d="M60 0 L62.5 5.5 L68 8 L62.5 10.5 L60 16 L57.5 10.5 L52 8 L57.5 5.5 Z" fill="#ee5a40"></path></svg>
+      <h2 class="kid-title">Pour les deux</h2>
+      <p class="kid-count" id="count-Les-deux"></p>
+    </div>
+    <p class="kid-empty" id="empty-Les-deux" hidden>Tous les souhaits pour les deux ont trouvé leur bonne fée.</p>
+    <div class="grid" id="grid-Les-deux"></div>
   </section>
 
   <p class="sr-only" id="announce" aria-live="polite"></p>
