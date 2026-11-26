@@ -32,7 +32,7 @@ Une page publique, sans compte, envoyée par lien à la famille : chacun coche l
 - Poser un secret Supabase crée une nouvelle version de **toutes** les fonctions du projet (`analyze-receipt` compris), sans changer leur code.
 - La CLI Supabase 3.x refuse toute modification en mode agent sans `--yes`.
 - GitHub Free : Pages uniquement sur dépôt public.
-- GitHub Pages sert les fichiers avec `cache-control: max-age=600` : un navigateur peut garder un ancien JS 10 minutes. `parents.html` charge `js/parents.js?v=3` ; `index.html` charge `js/liste.js` sans version (à ajouter à la prochaine modification).
+- GitHub Pages sert les fichiers avec `cache-control: max-age=600` : un navigateur peut garder un ancien JS 10 minutes. `parents.html` charge `js/parents.js?v=4`, `index.html` charge `js/liste.js?v=2` : incrémenter à chaque modification.
 
 ## STRUCTURE DU PROJET
 
@@ -79,6 +79,7 @@ Voir README.md.
 | 22/11/2026 | La fiche parents est masquée par défaut, ouverte par « Modifier » / « Ajouter un cadeau », refermée par Annuler / Enregistrer / Supprimer ; message « C'est enregistré » affiché au-dessus de la liste | Demande de Pierre : la fiche doit disparaître, pas seulement se vider | Écart assumé à la maquette Parents.dc.html (fiche toujours visible) |
 | 22/11/2026 | 10 photos fournies par Pierre réduites (600 px, JPEG 0,82) et déposées dans `noel-photos` via `supabase storage cp --experimental --remote=…`, puis reliées en SQL | Les images collées dans la conversation ne sont pas des fichiers ; passage par un dossier | Les parents peuvent toujours remplacer une photo depuis la fiche |
 | 22/11/2026 | Cadeau de Sacha renommé « Pokémon Bulbizarre + Poké Ball Clip » | Confirmé par Pierre (la photo et le produit sont Bulbizarre) | — |
+| 26/11/2026 | Catégorie « Pour les deux » : valeur `child = 'Les deux'` (contrainte SQL élargie, migration `20261126000001`), acceptée par la fonction, section dédiée sous Sacha (masquée si vide), groupe et choix « Les deux » dans l'espace parents. 3 jeux ajoutés (Bim Bam Boule, Les Éclairtout Fantasy, Labyrinthe Magique), liste à 20 | Demande de Pierre | Retirer la catégorie : d'abord réaffecter ses cadeaux à Loula ou Sacha, sinon la contrainte d'origine refuse les lignes existantes |
 | 25/11/2026 | 5 cadeaux ajoutés (Sacha : figurines Avengers, Nerf Elite 2.0, camion Playmobil ; Loula : Lunii Harry Potter 2, déguisement Vaiana), liste à 16. Nom, prix et photo relevés sur les pages des boutiques ; liens nettoyés des paramètres de suivi ; photos réduites et hébergées dans `noel-photos` | Demande de Pierre (liens fournis) | Prix relevés le 25/11, susceptibles de varier ; Vaiana : 61,00 € affiché, 45,75 € aussi présent sur la page (promo possible) |
 | 22/11/2026 | Zone tactile des liens « Voir chez … » laissée telle quelle (23 px de haut sur certaines cartes, sous les 44 px du brief) | Décision de Pierre : les liens fonctionnent sur téléphone | Si des proches ont du mal à toucher le lien : `padding` vertical sur `.card-link` |
 | 22/11/2026 | « Enregistrer » referme aussi la fiche après succès (message « C'est enregistré » conservé) ; en cas d'erreur la fiche reste ouverte | Demande de Pierre, même logique qu'Annuler | — |
